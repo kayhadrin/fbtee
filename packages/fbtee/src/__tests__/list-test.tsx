@@ -74,3 +74,25 @@ test('<fbt:list>', () => {
     </fbt>,
   ).toMatchSnapshot();
 });
+
+test('<fbt:list> using translated JSX element items', () => {
+  expect(
+    <fbt desc="Lists">
+      Available Locations:{' '}
+      <fbt:list
+        items={[
+          <span key="item 1">
+            <fbt desc="item_1">Tokyo</fbt>
+          </span>,
+          <b key="item 2">
+            <fbt desc="item_2">London</fbt>
+          </b>,
+          <i key="item 3">
+            <fbt desc="item_3">Vienna</fbt>
+          </i>,
+        ]}
+        name="locations"
+      />.
+    </fbt>,
+  ).toMatchSnapshot();
+});
