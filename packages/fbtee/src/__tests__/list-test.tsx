@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import getFbtResult from '../__mocks__/getFbtResult.tsx';
-import fbt from '../fbt.tsx';
+import { fbt } from '../index.tsx';
 import list from '../list.tsx';
 import setupFbtee from '../setupFbtee.tsx';
 import IntlViewerContext from '../ViewerContext.tsx';
@@ -56,11 +56,10 @@ describe('list', () => {
   });
 });
 
-test('fbt.list()', () => {
+test('fbt.list() using plain strings items', () => {
   expect(
     fbt(
       'Available Locations: ' +
-        // @ts-expect-error
         fbt.list('locations', ['Tokyo', 'London', 'Vienna']),
       'Lists',
     ),
@@ -68,9 +67,6 @@ test('fbt.list()', () => {
 });
 
 test('<fbt:list>', () => {
-  // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
-  fbt;
-
   expect(
     <fbt desc="Lists">
       Available Locations:{' '}
