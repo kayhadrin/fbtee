@@ -23,6 +23,7 @@ setupFbtee({
 console.warn = jest.fn();
 
 describe('fbt', () => {
+
   it('should handle variated numbers', () => {
     Hooks.register({
       // IntlCLDRNumberType31

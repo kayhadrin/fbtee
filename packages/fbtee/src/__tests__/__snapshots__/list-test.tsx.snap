@@ -2,4 +2,26 @@
 
 exports[`<fbt:list> 1`] = `"Available Locations: Tokyo, London and Vienna."`;
 
-exports[`fbt.list() 1`] = `"Available Locations: Tokyo, London and Vienna"`;
+exports[`<fbt:list> using translated JSX element items 1`] = `
+[
+  "Available Locations: ",
+  [
+    [
+      <span>
+        Tokyo
+      </span>,
+      ", ",
+      <b>
+        London
+      </b>,
+    ],
+    " and ",
+    <i>
+      Vienna
+    </i>,
+  ],
+  ".",
+]
+`;
+
+exports[`fbt.list() using plain strings items 1`] = `"Available Locations: Tokyo, London and Vienna"`;
