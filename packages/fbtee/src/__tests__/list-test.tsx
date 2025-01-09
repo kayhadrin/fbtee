@@ -56,7 +56,7 @@ describe('list', () => {
   });
 });
 
-test('fbt.list()', () => {
+test('fbt.list() using plain strings items', () => {
   expect(
     fbt(
       'Available Locations: ' +
