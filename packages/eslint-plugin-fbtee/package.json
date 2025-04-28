@@ -1,6 +1,6 @@
 {
   "name": "@nkzw/eslint-plugin-fbtee",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "",
   "keywords": [],
   "repository": {
@@ -14,13 +14,14 @@
     "import": "./lib/index.js",
     "require": "./lib/index.cjs"
   },
+  "main": "lib/index.cjs",
   "scripts": {
     "build": "tsup src/index.tsx -d lib --target=node22 --format=esm,cjs --clean --no-splitting --dts"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^8.18.2"
+    "@typescript-eslint/utils": "^8.29.0"
   },
   "devDependencies": {
-    "@typescript-eslint/rule-tester": "^8.18.2"
+    "@typescript-eslint/rule-tester": "^8.29.0"
   }
 }
