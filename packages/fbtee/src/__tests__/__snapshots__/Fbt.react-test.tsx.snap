@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ensure unique keys for React elements 1`] = `
+<DocumentFragment>
+  <span>
+    <div>
+      Apple
+    </div>
+    <div>
+      Banana
+    </div>
+  </span>
+</DocumentFragment>
+`;

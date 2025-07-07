@@ -6,7 +6,10 @@ import Hook, { Hooks } from './Hooks.tsx';
 import type { IFbtErrorListener, NestedFbtContentItems } from './Types.js';
 import IntlViewerContext from './ViewerContext.tsx';
 
-const getFbtResult = (
+/**
+ * @private
+ */
+export const defaultGetFbtResult = (
   contents: NestedFbtContentItems,
   hashKey: PatternHash | null | undefined,
   errorListener: IFbtErrorListener | null,
@@ -26,7 +29,7 @@ export default function setupFbtee({
   }
 
   if (!hooks.getFbtResult) {
-    hooks.getFbtResult = getFbtResult;
+    hooks.getFbtResult = defaultGetFbtResult;
   }
   if (!hooks.getFbsResult) {
     hooks.getFbsResult = getFbsResult;
