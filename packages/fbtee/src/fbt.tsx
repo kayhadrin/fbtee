@@ -81,7 +81,7 @@ export type Variations =
   | [variation: ParamVariationType['number'], value?: number | null]
   | [variation: ParamVariationType['gender'], value: GenderConst];
 
-export function createRuntime<P, T extends BaseResult | string>({
+export function createRuntime<P, T extends BaseResult>({
   getResult,
   param,
   plural,

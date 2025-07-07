@@ -14,7 +14,7 @@ import type {
 } from './Types.ts';
 import IntlViewerContext from './ViewerContext.tsx';
 
-export type ResolverFn<T extends BaseResult | string> = (
+export type ResolverFn<T extends BaseResult> = (
   contents: NestedFbtContentItems,
   hashKey: PatternHash | null | undefined,
   errorListener: IFbtErrorListener | null,
