@@ -153,10 +153,8 @@ describe('fbt', () => {
         B: 'preamble {tokenB} is after {tokenA}',
       },
       [
-        // @ts-expect-error
-        fbtInternal._param('tokenA', childA),
-        // @ts-expect-error
-        fbtInternal._param('tokenB', childB),
+        fbtInternal._param('tokenA', childA as string),
+        fbtInternal._param('tokenB', childB as string),
         fbtInternal._enum(value, { A: 'is before', B: 'is after' }),
       ],
     );
