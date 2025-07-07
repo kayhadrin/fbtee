@@ -104,18 +104,8 @@ export type FbtOptions = {
   subject?: IntlVariations;
 };
 
-type FbtOutput = {
-  fbt: string;
-  params: string;
-};
-
-type FbsOutput = {
-  fbt: string;
-  params: string;
-};
-
 type FbtEnumProps = {
-  'enum-range': Array<string> | { [enumKey: string]: string };
+  'enum-range': ReadonlyArray<string> | { [enumKey: string]: string };
   key?: string | null;
   value: string;
 };
@@ -157,7 +147,9 @@ type FbtProps = { key?: string | null } & (
 type FbtListProps = {
   conjunction?: FbtConjunction;
   delimiter?: FbtDelimiter;
-  items: Array<FbtWithoutString | React.ReactElement | null | undefined>;
+  items: ReadonlyArray<
+    FbtWithoutString | React.ReactElement | null | undefined
+  >;
   key?: string | null;
   name: string;
 };
@@ -166,7 +158,7 @@ declare module 'react' {
   namespace JSX {
     type PropsWithChildren<P> = P & { children?: React.ReactNode | undefined };
     type PropsWithStringChild<P> = P & {
-      children?: string | Array<string> | undefined;
+      children?: string | ReadonlyArray<string> | undefined;
     };
 
     interface IntrinsicElements {
