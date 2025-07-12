@@ -3,6 +3,7 @@
 import { afterEach, describe, expect, it, jest } from '@jest/globals';
 import { render } from '@testing-library/react';
 import { Component } from 'react';
+import { FbtImpl, Fbt as FbtPublicReactComponent } from '../Fbt.react.tsx';
 import fbtInternal from '../fbt.tsx';
 import FbtTranslations from '../FbtTranslations.tsx';
 import GenderConst from '../GenderConst.tsx';
@@ -10,7 +11,6 @@ import Hooks, { FbtRuntimeCallInput, FbtTranslatedInput } from '../Hooks.tsx';
 import { fbt } from '../index.tsx';
 import IntlVariations from '../IntlVariations.tsx';
 import setupFbtee, { defaultGetFbtResult } from '../setupFbtee.tsx';
-import { FbtImpl, Fbt as FbtPublicReactComponent } from '../Fbt.react.tsx';
 
 function toHTML(arg: React.ReactNode): string {
   return render(arg).container.innerHTML;
