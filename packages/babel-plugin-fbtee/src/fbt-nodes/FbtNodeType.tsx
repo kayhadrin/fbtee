@@ -1,3 +1,9 @@
+import { NodePath } from '@babel/core';
+import { JSXElement } from '@babel/types';
+
+export type JSXElementChild = JSXElement['children'][number];
+export type JSXElementNodePath = NodePath<JSXElement>;
+
 export type ConcreteFbtNodeType =
   | 'enum'
   | 'list'

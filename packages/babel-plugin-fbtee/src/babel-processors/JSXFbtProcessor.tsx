@@ -1,4 +1,3 @@
-import type { NodePath as NodePathT } from '@babel/core';
 import {
   ArrayExpression,
   arrayExpression,
@@ -27,6 +26,8 @@ import invariant from 'invariant';
 import {
   ConcreteFbtNodeType,
   isConcreteFbtNode,
+  JSXElementChild,
+  JSXElementNodePath,
 } from '../fbt-nodes/FbtNodeType.tsx';
 import {
   getCommonDescription,
@@ -54,14 +55,11 @@ import {
 } from '../FbtUtil.tsx';
 import getNamespacedArgs from '../getNamespacedArgs.tsx';
 
-type NodePath = NodePathT<JSXElement>;
-type JSXElementChild = JSXElement['children'][number];
-
 export default class JSXFbtProcessor {
   moduleName: BindingName;
-  node: NodePath['node'];
+  node: JSXElementNodePath['node'];
   nodeChecker: FbtNodeChecker;
-  path: NodePath;
+  path: JSXElementNodePath;
   validFbtExtraOptions: Readonly<FbtOptionConfig>;
   _openingElementAttributes: ReadonlyArray<JSXAttribute> | null = null;
 
@@ -71,7 +69,7 @@ export default class JSXFbtProcessor {
     validFbtExtraOptions,
   }: {
     nodeChecker: FbtNodeChecker;
-    path: NodePath;
+    path: JSXElementNodePath;
     validFbtExtraOptions: Readonly<FbtOptionConfig>;
   }) {
     this.moduleName = nodeChecker.moduleName;
@@ -79,23 +77,14 @@ export default class JSXFbtProcessor {
     this.nodeChecker = nodeChecker;
     this.path = path;
     this.validFbtExtraOptions = validFbtExtraOptions;
-
-    const { node } = this;
-    for (const attribute of node.openingElement.attributes) {
-      if (attribute.type === 'JSXSpreadAttribute') {
-        throw errorAt(
-          node,
-          `<${this.moduleName}> does not support spreading attributes.`,
-        );
-      }
-    }
+    nodeChecker.assertDenyJSXSpreadAttribute(this.node);
   }
 
   static create({
     path,
     validFbtExtraOptions,
   }: {
-    path: NodePath;
+    path: JSXElementNodePath;
     validFbtExtraOptions: Readonly<FbtOptionConfig>;
   }): JSXFbtProcessor | null {
     const nodeChecker = FbtNodeChecker.forJSXFbt(path.node);
@@ -231,7 +220,7 @@ export default class JSXFbtProcessor {
     CallExpression | JSXElement | StringLiteral
   > {
     this.path.traverse({
-      JSXElement: (path: NodePath) => {
+      JSXElement: (path: JSXElementNodePath) => {
         const { node } = path;
         if (!isJSXNamespacedName(node.openingElement.name)) {
           return;

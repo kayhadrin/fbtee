@@ -142,6 +142,17 @@ export default class FbtNodeChecker {
     }
   }
 
+  assertDenyJSXSpreadAttribute(node: JSXElement): void {
+    for (const attribute of node.openingElement.attributes) {
+      if (attribute.type === 'JSXSpreadAttribute') {
+        throw errorAt(
+          node,
+          `<${node.openingElement.name}> does not support JSX spread attributes.`,
+        );
+      }
+    }
+  }
+
   static forModule(moduleName: string): FbtNodeChecker {
     return moduleName === FbtBindingName ? fbtChecker : fbsChecker;
   }
@@ -174,6 +185,18 @@ export default class FbtNodeChecker {
     return fbtChecker.isJSXElement(node)
       ? fbtChecker
       : fbsChecker.isJSXElement(node)
+        ? fbsChecker
+        : null;
+  }
+
+  static forFbtReactJSXElement(node: JSXElement): FbtNodeChecker | null {
+    const nameNode = node.openingElement.name;
+    if (nameNode.type !== 'JSXIdentifier') {
+      return null;
+    }
+    return nameNode.name.startsWith(FbtBindingName)
+      ? fbtChecker
+      : nameNode.name.startsWith(FbsBindingName)
         ? fbsChecker
         : null;
   }

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Fbt React Component transform: supports simple <Fbt> string 1`] = `
+import { fbt } from "fbtee";
+import { FbtImpl } from "Fbtee.react";
+/*#__PURE__*/ React.createElement(
+  FbtImpl,
+  {
+    desc: "some-desc",
+  },
+  "A simple string"
+);
+
+`;
