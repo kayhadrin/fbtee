@@ -347,7 +347,7 @@ export default class JSXFbtProcessor {
   /**
    * This method mutates the current node
    */
-  convertToFbtFunctionCallNode(_phraseIndex: number) {
+  convertToFbtFunctionCallNode(_phraseIndex: number): boolean {
     this._assertNoNestedFbts();
     const children = this._transformChildrenForFbtCallSyntax();
     const text = this._getText(children);
@@ -360,6 +360,7 @@ export default class JSXFbtProcessor {
         text,
       }),
     );
+    return true;
   }
 }
 

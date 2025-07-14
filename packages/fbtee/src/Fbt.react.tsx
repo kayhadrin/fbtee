@@ -8,6 +8,7 @@ import {
   FbtPronounProps,
   FbtSameParamProps,
 } from '../ReactTypes.js';
+import fbtRuntime from './fbt.tsx';
 import { BaseResult, TranslatedString } from './Types.ts';
 
 /**
@@ -31,6 +32,10 @@ function throwMissingFbtTransformError() {
     `fbt must be used with its corresponding babel plugin. Please install the babel plugin and try again.`,
   );
 }
+// Attach the runtime to the user-facing Fbt component for use after transpilation.
+throwMissingFbtTransformError._ = fbtRuntime;
+// Attach the internal React runtime component to the user-facing Fbt component for use after transpilation.
+throwMissingFbtTransformError._$ = fbtRuntime;
 
 export const Fbt = throwMissingFbtTransformError as ComponentType<FbtEnumProps>;
 

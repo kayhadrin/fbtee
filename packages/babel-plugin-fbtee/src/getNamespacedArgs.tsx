@@ -27,9 +27,9 @@ import {
   normalizeSpaces,
 } from './FbtUtil.tsx';
 
-export default function getNamespacedArgs(
-  moduleName: string,
-): Record<ConcreteFbtNodeType, (node: JSXElement) => Array<Node>> {
+export default function getNamespacedArgs(moduleName: string): {
+  [K in ConcreteFbtNodeType]: (node: JSXElement) => Array<Node>;
+} {
   return {
     enum(node: JSXElement) {
       if (!node.openingElement.selfClosing) {

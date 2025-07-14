@@ -1,14 +1,119 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`Fbt React Component transform: supports simple <Fbt> string 1`] = `
+exports[`Fbt React Component transform: supports <FbtParam> construct 1`] = `
+import { Fbt } from "Fbtee.react";
+const FbtImpl = Fbt._$;
+const fbt = Fbt._;
+/*#__PURE__*/ React.createElement(FbtImpl, {
+  _: fbt._(
+    /* __FBT__ start */ {
+      jsfbt: { m: [], t: { desc: "desc", text: "a string {tokenName}" } },
+      project: "",
+    } /* __FBT__ end */,
+    [fbt._param("tokenName", tokenValue)]
+  ),
+});
+
+`;
+
+exports[`Fbt React Component transform: supports React component and legacy JSX notations at the same time 1`] = `
 import { fbt } from "fbtee";
-import { FbtImpl } from "Fbtee.react";
-/*#__PURE__*/ React.createElement(
-  FbtImpl,
-  {
-    desc: "some-desc",
-  },
-  "A simple string"
+import { Fbt } from "Fbtee.react";
+const FbtImpl = Fbt._$;
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      m: [],
+      t: { desc: "desc", text: "String with regular fbt syntax" },
+    },
+    project: "",
+  } /* __FBT__ end */
 );
+/*#__PURE__*/ React.createElement(FbtImpl, {
+  _: fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        m: [],
+        t: { desc: "desc", text: "String with fbt react component syntax" },
+      },
+      project: "",
+    } /* __FBT__ end */
+  ),
+});
+
+`;
+
+exports[`Fbt React Component transform: supports React component and legacy JSX notations at the same time 2`] = `
+import { Fbt } from "Fbtee.react";
+const FbtImpl = Fbt._$;
+import { fbt } from "fbtee";
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      m: [],
+      t: { desc: "desc", text: "String with regular fbt syntax" },
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+/*#__PURE__*/ React.createElement(FbtImpl, {
+  _: fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        m: [],
+        t: { desc: "desc", text: "String with fbt react component syntax" },
+      },
+      project: "",
+    } /* __FBT__ end */
+  ),
+});
+
+`;
+
+exports[`Fbt React Component transform: supports nested <Fbt> strings within <FbtParam> 1`] = `
+import { Fbt } from "Fbtee.react";
+import { fbt } from "fbtee";
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      m: [],
+      t: { desc: "outer desc", text: "an outer Fbt string {outerTokenName}" },
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._param(
+      "outerTokenName",
+      fbt._(
+        /* __FBT__ start */ {
+          jsfbt: {
+            m: [],
+            t: {
+              desc: "inner desc",
+              text: "an inner Fbt string {innerTokenName}",
+            },
+          },
+          project: "",
+        } /* __FBT__ end */,
+        [fbt._param("innerTokenName", innerTokenValue)]
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Fbt React Component transform: supports simple <Fbt> string 1`] = `
+import { Fbt } from "Fbtee.react";
+const FbtImpl = Fbt._$;
+const fbt = Fbt._;
+/*#__PURE__*/ React.createElement(FbtImpl, {
+  _: fbt._(
+    /* __FBT__ start */ {
+      jsfbt: { m: [], t: { desc: "desc", text: "A simple string" } },
+      project: "",
+    } /* __FBT__ end */
+  ),
+});
 
 `;

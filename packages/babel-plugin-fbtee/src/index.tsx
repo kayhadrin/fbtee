@@ -9,6 +9,7 @@ import { parse as parseDocblock } from 'jest-docblock';
 import FbtCommonFunctionCallProcessor from './babel-processors/FbtCommonFunctionCallProcessor.tsx';
 import type { MetaPhrase } from './babel-processors/FbtFunctionCallProcessor.tsx';
 import FbtFunctionCallProcessor from './babel-processors/FbtFunctionCallProcessor.tsx';
+import FbtReactJSXProcessor from './babel-processors/FbtReactJSXProcessor.tsx';
 import JSXFbtProcessor from './babel-processors/JSXFbtProcessor.tsx';
 import FbtElementNode from './fbt-nodes/FbtElementNode.tsx';
 import type { AnyFbtNode, PlainFbtNode } from './fbt-nodes/FbtNode.tsx';
@@ -297,15 +298,22 @@ export default function transform() {
        * Transform jsx-style <fbt> to fbt() calls.
        */
       JSXElement(path: NodePath<JSXElement>) {
-        const root = JSXFbtProcessor.create({
-          path,
-          validFbtExtraOptions,
-        });
-
-        if (!root) {
+        if (
+          FbtReactJSXProcessor.create({
+            path,
+          })?.convertToPlainFbtJSXElement()
+        ) {
           return;
         }
-        root.convertToFbtFunctionCallNode(allMetaPhrases.length);
+
+        if (
+          JSXFbtProcessor.create({
+            path,
+            validFbtExtraOptions,
+          })?.convertToFbtFunctionCallNode(allMetaPhrases.length)
+        ) {
+          return;
+        }
       },
 
       Program: {

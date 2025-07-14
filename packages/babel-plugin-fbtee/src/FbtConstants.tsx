@@ -122,9 +122,14 @@ export const FbtType = {
 export type BindingName = 'fbt' | 'fbs';
 
 export const ModuleName = 'fbtee';
+// fbt/fbs JS function names or JSX namespace names
 export const FbtBindingName = 'fbt';
 export const FbsBindingName = 'fbs';
 export const BindingNames = new Set([FbtBindingName, FbsBindingName]);
+
+// Main fbt/fbs React component name (e.g. <Fbt> or <Fbs>)
+export const FbtReactBindingName = 'Fbt';
+export const FbsReactBindingName = 'Fbs';
 
 export type FbtTypeValue = (typeof FbtType)[keyof typeof FbtType];
 export const ModuleNameRegExp: RegExp = /<[Ff]b[st]\b|fb[st](\.c)?\s*\(/;

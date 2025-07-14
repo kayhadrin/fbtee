@@ -11,7 +11,9 @@ import {
 import { FbtNodeType, getNodeType } from './fbt-nodes/FbtNodeType.tsx';
 import {
   FbsBindingName,
+  FbsReactBindingName,
   FbtBindingName,
+  FbtReactBindingName,
   type BindingName,
 } from './FbtConstants.tsx';
 import { errorAt } from './FbtUtil.tsx';
@@ -194,9 +196,10 @@ export default class FbtNodeChecker {
     if (nameNode.type !== 'JSXIdentifier') {
       return null;
     }
-    return nameNode.name.startsWith(FbtBindingName)
+
+    return nameNode.name === FbtReactBindingName
       ? fbtChecker
-      : nameNode.name.startsWith(FbsBindingName)
+      : nameNode.name === FbsReactBindingName
         ? fbsChecker
         : null;
   }
