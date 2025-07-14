@@ -1,4 +1,4 @@
-import { ComponentType, PropsWithChildren } from 'react';
+import { ComponentType, PropsWithChildren, ReactNode } from 'react';
 import {
   FbtEnumProps,
   FbtListProps,
@@ -6,6 +6,7 @@ import {
   FbtParamProps,
   FbtPluralProps,
   FbtPronounProps,
+  FbtProps,
   FbtSameParamProps,
 } from '../ReactTypes.js';
 import fbtRuntime from './fbt.tsx';
@@ -23,8 +24,14 @@ export function FbtImpl({
    * fbt result to render
    */
   _: BaseResult | TranslatedString;
-}): React.ReactNode {
-  return <>{typeof fromFbt === 'string' ? fromFbt : fromFbt.getContents()}</>;
+}): ReactNode {
+  return (
+    <>
+      {typeof fromFbt === 'string'
+        ? fromFbt
+        : (fromFbt.getContents() as ReactNode)}
+    </>
+  );
 }
 
 function throwMissingFbtTransformError() {
@@ -37,7 +44,7 @@ throwMissingFbtTransformError._ = fbtRuntime;
 // Attach the internal React runtime component to the user-facing Fbt component for use after transpilation.
 throwMissingFbtTransformError._$ = fbtRuntime;
 
-export const Fbt = throwMissingFbtTransformError as ComponentType<FbtEnumProps>;
+export const Fbt = throwMissingFbtTransformError as ComponentType<FbtProps>;
 
 export const FbtEnum =
   throwMissingFbtTransformError as ComponentType<FbtEnumProps>;

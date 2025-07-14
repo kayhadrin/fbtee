@@ -137,12 +137,19 @@ type FbtSameParamProps = {
   name: string;
 };
 
-type FbtProps = { key?: string | null } & (
-  | (FbtOptions & {
-      desc: string;
-    })
-  | { common: true }
-);
+type PropsWithChildren<P> = P & { children?: React.ReactNode | undefined };
+type PropsWithStringChild<P> = P & {
+  children?: string | ReadonlyArray<string> | undefined;
+};
+
+export type FbtProps = PropsWithChildren<
+  { key?: string | null } & (
+    | (FbtOptions & {
+        desc: string;
+      })
+    | { common: true }
+  )
+>;
 
 type FbtListProps = {
   conjunction?: FbtConjunction;
@@ -154,22 +161,21 @@ type FbtListProps = {
   name: string;
 };
 
+export type FbsNameProps = PropsWithStringChild<FbtNameProps>;
+export type FbsParamProps = PropsWithStringChild<FbtParamProps>;
+export type FbsPluralProps = PropsWithStringChild<FbtPluralProps>;
+
 declare module 'react' {
   namespace JSX {
-    type PropsWithChildren<P> = P & { children?: React.ReactNode | undefined };
-    type PropsWithStringChild<P> = P & {
-      children?: string | ReadonlyArray<string> | undefined;
-    };
-
     interface IntrinsicElements {
-      fbs: PropsWithChildren<FbtProps>;
+      fbs: FbtProps;
       'fbs:enum': FbtEnumProps;
-      'fbs:name': PropsWithStringChild<FbtNameProps>;
-      'fbs:param': PropsWithStringChild<FbtParamProps>;
-      'fbs:plural': PropsWithStringChild<FbtPluralProps>;
+      'fbs:name': FbsNameProps;
+      'fbs:param': FbsParamProps;
+      'fbs:plural': FbsPluralProps;
       'fbs:pronoun': FbtPronounProps;
       'fbs:same-param': FbtSameParamProps;
-      fbt: PropsWithChildren<FbtProps>;
+      fbt: FbtProps;
       'fbt:enum': FbtEnumProps;
       'fbt:list': FbtListProps;
       'fbt:name': PropsWithChildren<FbtNameProps>;
