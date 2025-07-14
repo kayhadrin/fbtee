@@ -63,7 +63,7 @@ export type FbtContentItem =
   | ReactElement
   | ReactPortal
   | string
-  | void;
+  | undefined;
 
 export type NestedFbtContentItems = ReadonlyArray<
   FbtContentItem | NestedFbtContentItems
