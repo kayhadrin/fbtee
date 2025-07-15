@@ -1,7 +1,8 @@
-.DS_Store
 .devcontainer/devcontainer.json
+.DS_Store
 .eslintcache
 .pnpm-debug.log
+.vscode/
 **/node_modules
 example/.enum_manifest.json
 example/source_strings.json
