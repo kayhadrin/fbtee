@@ -1,4 +1,5 @@
 .DS_Store
+.devcontainer/devcontainer.json
 .eslintcache
 .pnpm-debug.log
 **/node_modules
