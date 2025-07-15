@@ -9,7 +9,8 @@
   "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
-    "ghcr.io/devcontainers-extra/features/pnpm:2": {}
+    // Not using this because it's faster to install the latest version of pnpm directly in the postCreateCommand
+    // "ghcr.io/devcontainers-extra/features/pnpm:2": {}
   },
   // Configure tool-specific properties.
   "customizations": {
@@ -33,13 +34,13 @@
         "pmneo.tsimporter"
       ]
     }
-  }
+  },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "yarn install",
+  "postCreateCommand": ".devcontainer/setup.sh"
 
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root"
